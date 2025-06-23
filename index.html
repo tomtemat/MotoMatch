@@ -1,1 +1,45 @@
+<!DOCTYPE html>
+<html lang="sv">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>MCMatch Demo</title>
+  <style>
+    body { font-family: sans-serif; display: flex; height: 100vh;
+           justify-content: center; align-items: center; margin: 0; }
+    .card { text-align: center; border: 1px solid #ddd; padding: 2rem;
+            border-radius: .5rem; box-shadow: 0 2px 6px rgba(0,0,0,.1); }
+    .buttons { margin-top: 1.5rem; }
+    button { margin: 0 .5rem; padding: .5rem 1rem; font-size: 1rem; }
+  </style>
+</head>
+<body>
+  <div class="card" id="card"></div>
 
+  <script>
+    const profiles = [
+      { name: "Johan, 29", info: "Sporthoj – gillar kurviga vägar" },
+      { name: "Eva, 41", info: "Handledare – touring, lugn körning" },
+      { name: "Nico, 34", info: "Ny i stan – söker körkompisar" }
+    ];
+    let idx = 0;
+
+    function render() {
+      const p = profiles[idx];
+      document.getElementById("card").innerHTML = `
+        <h2>${p.name}</h2>
+        <p>${p.info}</p>
+        <div class="buttons">
+          <button onclick="no()">Nej</button>
+          <button onclick="yes()">Ja</button>
+        </div>`;
+    }
+
+    function next() { idx = (idx + 1) % profiles.length; render(); }
+    function no() { next(); }
+    function yes() { next(); }
+
+    render();
+  </script>
+</body>
+</html>
